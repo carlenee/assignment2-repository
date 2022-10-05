@@ -6,29 +6,30 @@
 
 {% block content %}
 <div class="login">
-    <div class="header">
+    {% comment %} <div class="header">
         <h1>Login</h1>
 
+    </div> {% endcomment %}
+
+    <div class="text-center mt-4 name">
+        Login
     </div>
 
-    <form method="POST" action="">
+    <form method="POST" action="" class="p-3 mt-3">
         {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            {% comment %} <td>Username: </td> {% endcomment %}
+            <input type="text" name="username" placeholder="Username" class="form-control flex">
+        </div>
+        <div class="form-field d-flex align-items-center">     
+            {% comment %} <td>Password: </td> {% endcomment %}
+            <span class="fas fa-key"></span>
+            <input type="password" name="password" placeholder="Password" class="form-control">
+        </div>
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+        <input class="btn login_btn mt-3" type="submit" value="Login">
             </tr>
-        </table>
     </form>
 
     {% if messages %}
@@ -38,9 +39,10 @@
             {% endfor %}
         </ul>
     {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+    <div class="text-center fs-6">
+        Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
     </div>
+</div>
 
 
 {% endblock content %}

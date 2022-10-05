@@ -3,8 +3,8 @@ from django import forms
 from .models import *
 
 class TaskForm(forms.ModelForm):
-    title= forms.CharField(widget= forms.TextInput(attrs={'size':'30'}))
-    description= forms.CharField(widget=forms.Textarea(attrs={'size': '60'}))
+    title= forms.CharField(widget= forms.TextInput())
+    description= forms.CharField(widget=forms.Textarea(attrs={'style': 'width: 15em;'}))
 
     class Meta:
         model = Task

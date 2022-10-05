@@ -5,19 +5,34 @@
     <div class="header">
         <h3>Task Form</h3>
     </div>
+
+    <div class="form-container form-input  flex-wrap flex-row ">
         <form method="POST" action="" id="newForm">
             {% csrf_token %}
-            <table>
-                {{form.as_table}}
+            {% comment %} <table>
+                {{form.as_p}}
                 <tr>  
                     <td></td>
-                    <td><input type="submit" name="submit" value="Create Task"/></td>
+                    <td><input class="btn" type="submit" name="submit" value="Create Task"/></td>
                 </tr>  
                 <tr>
                     <td></td>
-                    <td><input type="button" value="Go back!" onclick="history.back()"></td>
+                    <td><input class="btn" type="button" value="Go back!" onclick="history.back()"></td>
                 </tr>
-            </table>
+            </table> {% endcomment %}
+            {%for fm in form%}
+                <div class="form-apa">
+                    <label>{{fm.label}}</label>
+                    <p>{{fm}}</p>
+                </div>
+            {%endfor%}
+            <div class="tombol flex-col ">
+                <input class="btn" type="submit" name="submit" value="Create Task"/>
+                <input class="btn" type="button" value="Go back!" onclick="history.back()">
+            </div>
         </form>
+        
+
+    </div>
 </div>
 {% endblock content %}

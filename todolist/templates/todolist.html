@@ -7,8 +7,8 @@
         <h1>{{user}}'s to do list </h1>
     </div>
 
-    <div class="todolist">
-        <table class="listtable">
+    
+        {% comment %} <table class="listtable">
             <thead>
                 <tr>
                     <th>Completed</th>
@@ -18,42 +18,62 @@
                     <th>Status</th>
                     <th>Delete</th>
                 </tr>
-            </thead>
-            {% for task in todolist %}
-            <tbody>
-                <tr>
-                    <th>
-                        <input class='todolist-check' 
-                                type="checkbox" 
-                                id='{{task.id}}' 
-                                value= '{{task.ud}'
-                                name="finishbtn"
-                                {% if task.is_finished %} checked {% endif %}
-                                onchange="location.href='{% url 'todolist:mark_as_finished' task.id %}'"  
-                        />                  
-                        <!-- <span class="checkmark"></span> -->
-                    </th>
-                    <th>{{task.title}}</th>
-                    <th>{{task.description}}</th>
-                    <th>{{task.date}}</th>
-                    {% if task.is_finished == True %}
-                        <td style="text-align: center; color: greenyellow">Completed</td>
-                    {% else %}
-                        <td style="text-align: center; color: red">Unfinished</td>
-                    {% endif %}
-                    <th>
-                        <button class="btn" ><a href="{% url 'todolist:delete' task.id %}"><i class="fa fa-trash"></i></a></button>
-                    </th>
+            </thead> {% endcomment %}
+            <div class="container d-flex flex-wrap flex-row ">
+                {% for task in todolist %}
+                {% comment %} <tbody> {% endcomment %}
+                    {% comment %} <tr>
+                        <th>
+                            <input class='todolist-check' 
+                                    type="checkbox" 
+                                    id='{{task.id}}' 
+                                    value= '{{task.ud}'
+                                    name="finishbtn"
+                                    {% if task.is_finished %} checked {% endif %}
+                                    onchange="location.href='{% url 'todolist:mark_as_finished' task.id %}'"  
+                            />                  
+                            <!-- <span class="checkmark"></span> -->
+                        </th>
+                        <th>{{task.title}}</th>
+                        <th>{{task.description}}</th>
+                        <th>{{task.date}}</th>
+                        {% if task.is_finished == True %}
+                            <p style="text-align: center; color: greenyellow">Completed</td>
+                        {% else %}
+                            <td style="text-align: center; color: red">Unfinished</td>
+                        {% endif %}
+                        <th>
+                            <button class="btn" ><a href="{% url 'todolist:delete' task.id %}"><i class="fa fa-trash"></i></a></button>
+                        </th>
 
-                </tr>
-            </tbody>
-            
-            {% endfor %}
-        </table>
-    </div>
+                    </tr> {% endcomment %}
+                {% comment %} </tbody> {% endcomment %}
+                <div class="m-2 card p-2">
+                    <p class="text font-weight-bold">Task : {{task.title}}</p>
+                    <p>Description : {{task.description}}</p>
+                    <p>Created : {{task.date}}</p>
+                    <p>Status : 
+                        {% if task.is_finished == True %}
+                            <span class= "Completed text-success">Completed</span>
+                        {% else %}
+                            <span class="unfinished text-danger">Unfinished</span>
+                        {% endif %}
+                    </p>
+                    <button class="btn" ><a href="{% url 'todolist:delete' task.id %}"><i class="fa fa-trash"></i></a></button>
+                    <input class='todolist-check' 
+                                    type="checkbox" 
+                                    id='{{task.id}}' 
+                                    value= '{{task.ud}'
+                                    name="finishbtn"
+                                    {% if task.is_finished %} checked {% endif %}
+                                    onchange="location.href='{% url 'todolist:mark_as_finished' task.id %}'" />             
+                </div>
+                {% endfor %}
+            </div>
+        {% comment %} </table> {% endcomment %}
 
     <p><a href="{% url 'todolist:create_task' %}">Create Task</a></p>
-    <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+    <button class="btn-logout"><a href="{% url 'todolist:logout' %}">Logout</a></button>
 </div>
 
 {% endblock content %}
