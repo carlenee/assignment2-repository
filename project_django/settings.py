@@ -148,7 +148,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'),]
+STATICFILES_DIRS = STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 TESTING = len(sys.argv)>1 and sys.argv[1] == 'test'
 STATICFILES_STORAGE = (
@@ -156,6 +158,7 @@ STATICFILES_STORAGE = (
     if TESTING
     else 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 )
+
 for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
     directory.mkdir(exist_ok=True)
 
