@@ -6,6 +6,8 @@ NPM : 2106752211
 
 Kelas :D
 
+https://katalog-carlene.herokuapp.com/todolist/login/?next=/todolist/login
+
 ##  **Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?** 
 
 Inline CSS merupakan penulisan CSS yang dilakukan didalam tag elemen yang akan di styling , Internal CSS merupakan cara penulisan CSS yang dilakukan pada file yang sama dengan file HTML. Sedangkan External CSS adalah cara penulisan CSS pada file yang terpisah dari HTML.
