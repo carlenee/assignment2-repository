@@ -107,6 +107,7 @@
                 -3px -3px 3px #fff;
             letter-spacing: 1.3px;
             margin-bottom: 10; 
+            text-align: center;
     }
     
     .login .btn:hover {
@@ -125,6 +126,19 @@
     }
 
     .todolist-container .btn-logout{
+        box-shadow: none;
+        width: 40%;
+        height: 40px;
+        background-color: #c2cdc1;
+        color: #fff;
+        border-radius: 25px;
+        box-shadow: 3px 3px 3px #b1b1b1,
+            -3px -3px 3px #fff;
+        letter-spacing: 1.3px;
+        margin: 10;
+    }
+
+    .todolist-container .button-add{
         box-shadow: none;
         width: 40%;
         height: 40px;

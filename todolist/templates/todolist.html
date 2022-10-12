@@ -81,7 +81,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
-            <div class="modal-header">
+            <div class="modal-header
+                        ">
                 <button type="button" class="close" data-bs-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
@@ -96,7 +97,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" class="form-control" id="inputTitle" name='title' placeholder="Enter task title"/>
+                        <input type="text" class="form-control w-100" id="inputTitle" name='title' placeholder="Enter task title"/>
                     </div>
                     <div class="form-group">
                         <label for="inputDescription">Description</label>
@@ -107,15 +108,15 @@
             
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-                <button type="submit" onclick = "submitForm()" class="btn btn-primary submitBtn" id="submit">Submit</button>
+                <button type="button" class="btn btn-default h-25" data-bs-dismiss="modal">Close</button>
+                <button type="submit" onclick = "submitForm()" class="btn btn-primary submitBtn h-25" id="submit">Submit</button>
             </div>
         </div>
     </div>
 </div>
 <p><a href="{% url 'todolist:create_task' %}">Create Task</a></p>
 <button class="btn-logout"><a href="{% url 'todolist:logout' %}">Logout</a></button>
-<button onclick="myFunction()">Add Task</button>
+<button onclick="myFunction()" class= "button-add">Add Task</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
