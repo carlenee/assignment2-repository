@@ -20,7 +20,7 @@
                 </tr>
             </thead> {% endcomment %}
             <div class="container d-flex flex-wrap flex-row " id= "card-container">
-                {% for task in todolist %}
+                <!-- {% for task in todolist %}
                 {% comment %} <tbody> {% endcomment %}
                     {% comment %} <tr>
                         <th>
@@ -30,9 +30,8 @@
                                     value= '{{task.ud}'
                                     name="finishbtn"
                                     {% if task.is_finished %} checked {% endif %}
-                                    onchange="location.href='{% url 'todolist:mark_as_finished' task.id %}'"  
+                                    onchange="location.href=`{% url 'todolist:mark_as_finished' task.id %}`"  
                             />                  
-                            <!-- <span class="checkmark"></span> -->
                         </th>
                         <th>{{task.title}}</th>
                         <th>{{task.description}}</th>
@@ -66,9 +65,9 @@
                                     value= '{{task.ud}'
                                     name="finishbtn"
                                     {% if task.is_finished %} checked {% endif %}
-                                    onchange="location.href='{% url 'todolist:mark_as_finished' task.id %}'" />             
+                                    onchange="location.href=`{% url 'todolist:mark_as_finished' task.id %}`" />             
                 </div>
-                {% endfor %}
+                {% endfor %} -->
             </div>
             {% comment %} <div id="task"><button type="button" class="btn btn-info btn" data-toggle="modal" data-target="#task-modal">Add Task</button></div> {% endcomment %}
         <!-- Button to trigger modal -->
@@ -137,9 +136,10 @@
 
     $(document).ready(function(){
         showJson();
+        makeCards();
     })
 
-    {% comment %} function delele_todolist(id){
+    function delele_todolist(id){
         $.ajax({
           type :"DELETE",
           csrfmiddlewaretoken: "{{ csrf_token }}",
@@ -148,8 +148,9 @@
             $(`#${id}`).remove()
           },
         })
-    } {% endcomment %}
-    funtion makeCards(){
+    } 
+
+    function makeCards(){
         let text= "";
         $.ajax({
             url: "{% url 'todolist:show_todolist_json' %}",
@@ -177,14 +178,13 @@
                     </div>`             
 
                 }
-                ${'#card-container'}.html(text);
+                $('#card-container').html(text);
 
             } ,
             error: function(data){
                 console.log('Error Detected');
             }
-        })
-    }
+        })}
 
     function submitForm(){
             $.ajax({
@@ -201,7 +201,7 @@
                     makeCards()
                 },
                 error: function(error){
-                    alert("ckck")
+                    alert("error")
                 }
             })
             return false;
