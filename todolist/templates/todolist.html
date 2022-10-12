@@ -149,7 +149,7 @@
           },
         })
     } {% endcomment %}
-    {% comment %} funtion makeCards(){
+    funtion makeCards(){
         let text= "";
         $.ajax({
             url: "{% url 'todolist:show_todolist_json' %}",
@@ -184,7 +184,7 @@
                 console.log('Error Detected');
             }
         })
-    } {% endcomment %}
+    }
 
     function submitForm(){
             $.ajax({
@@ -198,6 +198,7 @@
                 dataType: "json",
                 success: function(){
                     $("#modalForm").modal('hide')
+                    makeCards()
                 },
                 error: function(error){
                     alert("ckck")
