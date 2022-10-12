@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -10,8 +11,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import *
-
-
+from django.http import HttpResponse, JsonResponse
+from django.core import serializers
+from datetime import date
 
 @login_required(login_url="/todolist/login/")
 # Create your views here.
@@ -86,5 +88,18 @@ def delete_task(request, id):
     task.delete()
     return HttpResponseRedirect(reverse("todolist:show_todolist"))
 
+def show_todolist_json(request):
+    task = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", task), content_type="application/json")
 
+def create_task_ajax(request):
+     if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        user = request.user
+        date = datetime.datetime.now()
+        is_finished = False
+        item = Task(title=title, description=description, user=user, date=date, is_finished=is_finished)
+        item.save()
+        return JsonResponse({"Message": "Task Success"},status=200)
 
