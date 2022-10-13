@@ -14,6 +14,7 @@ from .forms import *
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from datetime import date
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url="/todolist/login/")
 # Create your views here.
@@ -76,17 +77,17 @@ def create_task(request):
         return HttpResponseRedirect(reverse("todolist:show_todolist"))
     context = {'form': form}
     return render(request, 'create-task.html', context)
-
+@csrf_exempt
 def mark_as_finished(request, id):
     task = Task.objects.get(user=request.user, id=id)
     task.is_finished = not(task.is_finished)
     task.save(update_fields = ['is_finished'])
-    return HttpResponseRedirect(reverse("todolist:show_todolist"))
+    return JsonResponse({"Message": "Task Updated"},status=200)
 
-def delete_task(request, id):
-    task = Task.objects.get(id=id)
-    task.delete()
-    return HttpResponseRedirect(reverse("todolist:show_todolist"))
+# def delete_task(request, id):
+#     task = Task.objects.get(id=id)
+#     task.delete()
+#     return HttpResponseRedirect(reverse("todolist:show_todolist"))
 
 def show_todolist_json(request):
     task = Task.objects.filter(user=request.user)
@@ -102,4 +103,10 @@ def create_task_ajax(request):
         item = Task(title=title, description=description, user=user, date=date, is_finished=is_finished)
         item.save()
         return JsonResponse({"Message": "Task Success"},status=200)
+
+@csrf_exempt
+def delete_task(request, id):
+    task = Task.objects.get(user=request.user, id=id)
+    task.delete()
+    return JsonResponse({"Message": "Task Deleted"},status=200)
 

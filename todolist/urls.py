@@ -13,7 +13,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('create-task/', create_task, name='create_task'),
     path('mark-as-finished/<int:id>/', mark_as_finished, name='mark_as_finished'),
-    path('delete/<int:id>/', delete_task, name='delete'),
+    path('delete/<int:id>/', delete_task, name='delete_task'),
     path('json/', show_todolist_json, name='show_todolist_json'),
     path('add/', create_task_ajax, name = 'create_task_ajax'),
 ]
